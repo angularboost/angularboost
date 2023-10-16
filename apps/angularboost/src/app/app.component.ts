@@ -1,13 +1,28 @@
-import { Component } from '@angular/core';
-import { NxWelcomeComponent } from './nx-welcome.component';
+import { CUSTOM_ELEMENTS_SCHEMA, Component } from '@angular/core';
 
 @Component({
   standalone: true,
-  imports: [NxWelcomeComponent],
+  imports: [],
+  // We can use <custom-element-example> only if we turn off error-checking...
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   selector: 'angularboost-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  title = 'angularboost';
+  constructor() {
+    // Register the custom element
+    customElements.define('custom-element-example', CustomElementExample);
+  }
+}
+
+// Define a custom element
+class CustomElementExample extends HTMLElement {
+  constructor() {
+    super();
+    const shadowRoot = this.attachShadow({ mode: 'open' });
+    const span = document.createElement('span');
+    span.textContent = `I'm a Custom Element!`;
+    shadowRoot.appendChild(span);
+  }
 }
