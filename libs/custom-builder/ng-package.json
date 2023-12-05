@@ -12,6 +12,11 @@
       "input": "src/builders/dev-server",
       "glob": "schema.json",
       "output": "builders/dev-server/"
+    },
+    {
+      "input": "src/builders/application",
+      "glob": "schema.json",
+      "output": "builders/application/"
     }
   ],
   "lib": {

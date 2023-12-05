@@ -4,20 +4,27 @@ import {
   createBuilder,
 } from '@angular-devkit/architect';
 import {
-  BrowserBuilderOptions,
-  executeBrowserBuilder,
+  ApplicationBuilderOptions,
+  buildApplication,
 } from '@angular-devkit/build-angular';
+import { BuildOutputFile } from '@angular-devkit/build-angular/src/tools/esbuild/bundler-context';
 import { DomElementSchemaRegistry } from '@angular/compiler';
 import * as fs from 'fs';
-import { Observable } from 'rxjs';
 
 export default createBuilder(customApplicationBuilder);
 
 function customApplicationBuilder(
-  options: BrowserBuilderOptions & CustomOptions,
+  options: ApplicationBuilderOptions & CustomOptions,
   context: BuilderContext
-): Observable<BuilderOutput> {
-  console.log('[@angularboost/custom-builder] customBrowserBuilder started');
+): AsyncIterable<
+  BuilderOutput & {
+    outputFiles?: BuildOutputFile[];
+    assetFiles?: { source: string; destination: string }[];
+  }
+> {
+  console.log(
+    '[@angularboost/custom-builder] customApplicationBuilder started'
+  );
   const optionsHandler = new OptionsHandler(options);
 
   // Override hasElement method in DomElementSchemaRegistry
@@ -37,7 +44,7 @@ function customApplicationBuilder(
   };
 
   // Call the original browser builder
-  return executeBrowserBuilder(options, context);
+  return buildApplication(options, context);
 }
 
 class OptionsHandler {
@@ -46,7 +53,12 @@ class OptionsHandler {
 
   constructor(options: CustomOptions) {
     const { customElementsPrefix, customElementsManifestFilePath } = options;
-    this.customElementsPrefixes = customElementsPrefix?.split(',');
+    console.log('Detected options:', {
+      customElementsPrefix,
+      customElementsManifestFilePath,
+    });
+
+    this.customElementsPrefixes = customElementsPrefix?.split(',') ?? [];
 
     if (customElementsManifestFilePath) {
       try {

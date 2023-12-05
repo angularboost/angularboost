@@ -40,13 +40,18 @@ function customBrowserBuilder(
 }
 
 import * as fs from 'fs';
-export class OptionsHandler {
+class OptionsHandler {
   private customElementsPrefixes: string[] = [];
   private manifestFileTagNames: string[] = [];
 
   constructor(options: CustomOptions) {
     const { customElementsPrefix, customElementsManifestFilePath } = options;
-    this.customElementsPrefixes = customElementsPrefix?.split(',');
+    console.log('Detected options:', {
+      customElementsPrefix,
+      customElementsManifestFilePath,
+    });
+
+    this.customElementsPrefixes = customElementsPrefix?.split(',') ?? [];
 
     if (customElementsManifestFilePath) {
       try {
@@ -83,7 +88,7 @@ export class OptionsHandler {
     );
 }
 
-export interface CustomOptions {
+interface CustomOptions {
   // Also supports a comma separated list of prefixes
   customElementsPrefix: string;
   customElementsManifestFilePath: string;

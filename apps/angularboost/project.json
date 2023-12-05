@@ -7,14 +7,14 @@
   "tags": [],
   "targets": {
     "build": {
-      "executor": "@angularboost/custom-builder:browser",
+      "executor": "@angularboost/custom-builder:application",
       "outputs": ["{options.outputPath}"],
       "options": {
         "customElementsPrefix": "my-",
         "customElementsManifestFilePath": "custom-elements-manifest.json",
         "outputPath": "dist/apps/angularboost",
         "index": "apps/angularboost/src/index.html",
-        "main": "apps/angularboost/src/main.ts",
+        "browser": "apps/angularboost/src/main.ts",
         "polyfills": ["zone.js"],
         "tsConfig": "apps/angularboost/tsconfig.app.json",
         "assets": [
@@ -41,9 +41,7 @@
           "outputHashing": "all"
         },
         "development": {
-          "buildOptimizer": false,
           "optimization": false,
-          "vendorChunk": true,
           "extractLicenses": false,
           "sourceMap": true,
           "namedChunks": true
