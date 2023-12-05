@@ -1,10 +1,10 @@
-import { CUSTOM_ELEMENTS_SCHEMA, Component } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   standalone: true,
   imports: [],
   // We can use <custom-element-example> only if we turn off error-checking...
-  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  // schemas: [CUSTOM_ELEMENTS_SCHEMA],
   selector: 'angularboost-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
@@ -12,7 +12,10 @@ import { CUSTOM_ELEMENTS_SCHEMA, Component } from '@angular/core';
 export class AppComponent {
   constructor() {
     // Register the custom element
-    customElements.define('custom-element-example', CustomElementExample);
+    customElements.define(
+      'my-custom-element-with-prefix',
+      CustomElementExample
+    );
   }
 }
 

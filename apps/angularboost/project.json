@@ -7,9 +7,11 @@
   "tags": [],
   "targets": {
     "build": {
-      "executor": "@angular-devkit/build-angular:browser",
+      "executor": "@angularboost/custom-builder:browser",
       "outputs": ["{options.outputPath}"],
       "options": {
+        "customElementsPrefix": "my-",
+        "customElementsManifestFilePath": "custom-elements-manifest.json",
         "outputPath": "dist/apps/angularboost",
         "index": "apps/angularboost/src/index.html",
         "main": "apps/angularboost/src/main.ts",
@@ -50,7 +52,11 @@
       "defaultConfiguration": "production"
     },
     "serve": {
-      "executor": "@angular-devkit/build-angular:dev-server",
+      "executor": "@angularboost/custom-builder:dev-server",
+      "options": {
+        "customElementsPrefix": "my-",
+        "customElementsManifestFilePath": "custom-elements-manifest.json"
+      },
       "configurations": {
         "production": {
           "browserTarget": "angularboost:build:production"

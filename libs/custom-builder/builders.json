@@ -1,0 +1,25 @@
+{
+  "$schema": "../../node_modules/@angular-devkit/architect/src/builders-schema.json",
+  "builders": {
+    "browser": {
+      "implementation": "./esm2022/builders/browser/browser.builder.mjs",
+      "schema": "./builders/browser/schema.json",
+      "description": "Build a browser application."
+    },
+    "dev-server": {
+      "implementation": "./esm2022/builders/dev-server/dev-server.builder.mjs",
+      "schema": "./builders/dev-server/schema.json",
+      "description": "Serve an application."
+    },
+    "application": {
+      "implementation": "./esm2022/builders/application/application.builder.mjs",
+      "schema": "./builders/application/schema.json",
+      "description": "Serve an application."
+    },
+    "browser-esbuild": {
+      "implementation": "./esm2022/builders/browser-esbuild/browser-esbuild.builder.mjs",
+      "schema": "./builders/browser-esbuild/schema.json",
+      "description": "Serve an application."
+    }
+  }
+}

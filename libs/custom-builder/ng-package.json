@@ -1,0 +1,20 @@
+{
+  "$schema": "../../node_modules/ng-packagr/ng-package.schema.json",
+  "dest": "../../dist/@angularboost/custom-builder",
+  "assets": [
+    "builders.json",
+    {
+      "input": "src/builders/browser",
+      "glob": "schema.json",
+      "output": "builders/browser/"
+    },
+    {
+      "input": "src/builders/dev-server",
+      "glob": "schema.json",
+      "output": "builders/dev-server/"
+    }
+  ],
+  "lib": {
+    "entryFile": "src/public-api.ts"
+  }
+}

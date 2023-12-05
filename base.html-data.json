@@ -1,0 +1,24 @@
+{
+  "$schema": "https://unpkg.com/vscode-html-languageservice@4.2.0/docs/customData.schema.json",
+  "version": 1.1,
+  "tags": [
+    {
+      "name": "non-existing-element",
+      "description": "The option element for usage inside select elements",
+      "attributes": [
+        {
+          "name": "value",
+          "description": "Value delegated to the parent select element"
+        },
+        {
+          "name": "selected",
+          "description": "Selects the option on initial render"
+        },
+        {
+          "name": "disabled",
+          "description": "Sets the disabled state"
+        }
+      ]
+    }
+  ]
+}

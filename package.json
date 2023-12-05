@@ -3,8 +3,12 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "start": "nx serve angularboost"
+    "watch": "nx run custom-builder:build --watch",
+    "link": "cd dist/@angularboost/custom-builder && npm link @angularboost/custom-builder",
+    "start": "nx run angularboost:serve --skip-nx-cache",
+    "build": "nx run angularboost:build --skip-nx-cache"
   },
+  "customElements": "custom-elements-manifest.json",
   "private": true,
   "dependencies": {
     "@angular/animations": "~16.2.0",
@@ -21,6 +25,7 @@
     "zone.js": "~0.13.0"
   },
   "devDependencies": {
+    "@angular-devkit/architect": "^0.1602.6",
     "@angular-devkit/build-angular": "~16.2.0",
     "@angular-devkit/core": "~16.2.0",
     "@angular-devkit/schematics": "~16.2.0",
@@ -38,10 +43,13 @@
     "@nx/web": "16.10.0",
     "@nx/workspace": "16.10.0",
     "@schematics/angular": "~16.2.0",
+    "@swc-node/register": "^1.6.8",
+    "@swc/core": "^1.3.93",
     "@types/jest": "^29.4.0",
     "@types/node": "16.11.7",
     "@typescript-eslint/eslint-plugin": "^5.60.1",
     "@typescript-eslint/parser": "^5.60.1",
+    "custom-elements-manifest": "^2.0.0",
     "cypress": "^13.0.0",
     "eslint": "~8.46.0",
     "eslint-config-prettier": "8.1.0",
@@ -53,6 +61,10 @@
     "ng-packagr": "^16.2.0",
     "nx": "16.10.0",
     "nx-cloud": "latest",
+    "postcss": "^8.4.5",
+    "postcss-import": "~14.1.0",
+    "postcss-preset-env": "~7.5.0",
+    "postcss-url": "~10.1.3",
     "prettier": "^2.6.2",
     "ts-jest": "^29.1.0",
     "ts-node": "10.9.1",
